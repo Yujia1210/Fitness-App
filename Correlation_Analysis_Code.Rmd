@@ -1,0 +1,207 @@
+---
+title: "Correlation_Analysis"
+author: "Yujia Gong"
+date: "2023-08-18"
+output: html_document
+---
+
+```{r}
+
+library(readr)
+library(dplyr)
+data <- read_csv("Correlation_Analysis.csv")
+
+```
+# Calculate the mean and standard deviation of FE
+```{r}
+
+data$FE_avg <- rowMeans(data[, c("FE1", "FE2", "FE3")], na.rm=TRUE)
+FE_avg_value <- mean(data$FE_avg, na.rm=TRUE)
+FE_std_dev <- sd(data$FE_avg, na.rm=TRUE)
+cat("Average of FE:", FE_avg_value, "\n")
+cat("Standard Deviation of FE:", FE_std_dev, "\n")
+
+```
+
+# Calculate the mean and standard deviation of SI
+```{r}
+
+data$SI_avg <- rowMeans(data[, c("SI1", "SI2", "SI3", "SI4", "SI5")], na.rm=TRUE)
+SI_avg_value <- mean(data$SI_avg, na.rm=TRUE)
+SI_std_dev <- sd(data$SI_avg, na.rm=TRUE)
+cat("Average of SI:", SI_avg_value, "\n")
+cat("Standard Deviation of SI:", SI_std_dev, "\n")
+
+```
+
+# Calculate the mean and standard deviation of FH
+```{r}
+
+data$FH_avg <- rowMeans(data[, c("FH1", "FH2", "FH3")], na.rm=TRUE)
+FH_avg_value <- mean(data$FH_avg, na.rm=TRUE)
+FH_std_dev <- sd(data$FH_avg, na.rm=TRUE)
+cat("Average of FH:", FH_avg_value, "\n")
+cat("Standard Deviation of FH:", FH_std_dev, "\n")
+
+```
+
+# Calculate the mean and standard deviation of HS
+```{r}
+
+data$HS_avg <- rowMeans(data[, c("HS1", "HS2", "HS3")], na.rm=TRUE)
+HS_avg_value <- mean(data$HS_avg, na.rm=TRUE)
+HS_std_dev <- sd(data$HS_avg, na.rm=TRUE)
+cat("Average of HS:", HS_avg_value, "\n")
+cat("Standard Deviation of HS:", HS_std_dev, "\n")
+
+```
+
+# Calculate the mean and standard deviation of PEOU
+```{r}
+
+data$PEOU_avg <- rowMeans(data[, c("PEOU1", "PEOU2")], na.rm=TRUE)
+PEOU_avg_value <- mean(data$PEOU_avg, na.rm=TRUE)
+PEOU_std_dev <- sd(data$PEOU_avg, na.rm=TRUE)
+cat("Average of PEOU:", PEOU_avg_value, "\n")
+cat("Standard Deviation of PEOU:", PEOU_std_dev, "\n")
+
+```
+
+# Calculate the mean and standard deviation of PU
+```{r}
+
+data$PU_avg <- rowMeans(data[, c("PU1", "PU2", "PU3")], na.rm=TRUE)
+PU_avg_value <- mean(data$PU_avg, na.rm=TRUE)
+PU_std_dev <- sd(data$PU_avg, na.rm=TRUE)
+cat("Average of PU:", PU_avg_value, "\n")
+cat("Standard Deviation of PU:", PU_std_dev, "\n")
+
+```
+
+# Calculate the mean and standard deviation of CUB
+```{r}
+
+CUB_avg_value <- mean(data$CUB, na.rm=TRUE)
+CUB_std_dev <- sd(data$CUB, na.rm=TRUE)
+cat("Average of CUB:", CUB_avg_value, "\n")
+cat("Standard Deviation of CUB:", CUB_std_dev, "\n")
+
+```
+# H1a: The fitness environment significantly impacts users' perceived ease of use of fitness apps.
+```{r}
+
+correlation_H1a <- cor.test(data$FE_avg, data$PEOU_avg, method="pearson")
+print(correlation_H1a)
+
+```
+# H1b: The fitness environment significantly impacts users' perceived usefulness of fitness apps.
+```{r}
+
+correlation_H1b <- cor.test(data$FE_avg, data$PU_avg, method="pearson")
+print(correlation_H1b)
+
+```
+
+# H1c: The fitness environment significantly impacts users' continuous use behaviour of fitness apps.
+```{r}
+
+correlation_H1c <- cor.test(data$FE_avg, data$CUB, method="pearson")
+print(correlation_H1c)
+
+```
+
+# H2a: The social influence significantly impacts users' perceived ease of use of fitness apps.
+```{r}
+
+correlation_H2a <- cor.test(data$SI_avg, data$PEOU_avg, method="pearson")
+print(correlation_H2a)
+
+```
+
+# H2b: The social influence significantly impacts users' perceived usefulness of fitness apps.
+```{r}
+
+correlation_H2b <- cor.test(data$SI_avg, data$PU_avg, method="pearson")
+print(correlation_H2b)
+
+```
+
+# H2c: The social influence significantly impacts users' continuous use behaviour of fitness apps.
+```{r}
+
+correlation_H2c <- cor.test(data$SI_avg, data$CUB, method="pearson")
+print(correlation_H2c)
+
+```
+
+# H3a: The fitness history significantly impacts users' perceived ease of use of fitness apps.
+```{r}
+
+correlation_H3a <- cor.test(data$FH_avg, data$PEOU_avg, method="pearson")
+print(correlation_H3a)
+
+```
+
+# H3b: The fitness history significantly impacts users' perceived usefulness of fitness apps.
+```{r}
+
+correlation_H3b <- cor.test(data$FH_avg, data$PU_avg, method="pearson")
+print(correlation_H3b)
+
+```
+
+# H3c: The fitness history significantly impacts users' continuous use behaviour of fitness apps.
+```{r}
+
+correlation_H3c <- cor.test(data$FH_avg, data$CUB, method="pearson")
+print(correlation_H3c)
+
+```
+
+# H4a: The health status significantly impacts users' perceived ease of use of fitness apps.
+```{r}
+
+correlation_H4a <- cor.test(data$HS_avg, data$PEOU_avg, method="pearson")
+print(correlation_H4a)
+
+```
+
+# H4b: The health status significantly impacts users' perceived usefulness of fitness apps.
+```{r}
+
+correlation_H4b <- cor.test(data$HS_avg, data$PU_avg, method="pearson")
+print(correlation_H4b)
+
+```
+
+# H4c: The health status significantly impacts users' continuous use behaviour of fitness apps.
+```{r}
+
+correlation_H4c <- cor.test(data$HS_avg, data$CUB, method="pearson")
+print(correlation_H4c)
+
+```
+
+# H5: Users' perceived ease of use of fitness apps positively impacts perceived usefulness.
+```{r}
+
+correlation_H5 <- cor.test(data$PEOU_avg, data$PU_avg, method="pearson")
+print(correlation_H5)
+
+```
+
+# H6: Users' perceived ease of use of fitness apps positively impacts continuous use behaviour.
+```{r}
+
+correlation_H6 <- cor.test(data$PEOU_avg, data$CUB, method="pearson")
+print(correlation_H6)
+
+```
+
+# H7: Users' perceived usefulness of fitness apps positively impacts continuous use behaviour.
+```{r}
+
+correlation_H7 <- cor.test(data$PU_avg, data$CUB, method="pearson")
+print(correlation_H7)
+
+```

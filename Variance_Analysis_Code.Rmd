@@ -1,0 +1,194 @@
+---
+title: "Variance Analysis"
+author: "Yujia Gong"
+date: "2023-08-18"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+data <- read.csv("VarianceAnalysis_Data.csv")
+```
+
+# Variance Analysis using PEOU as the dependent variable
+# Fitness Environment
+```{r}
+
+data %>%
+  group_by(FE) %>%
+  summarise(Number = n(),
+            Mean = mean(PEOU, na.rm = TRUE),
+            StdDev = sd(PEOU, na.rm = TRUE))
+
+aov_FE_POEU <- t.test(PEOU ~ FE, data = data, var.equal = TRUE)
+print(aov_FE_POEU)
+
+```
+
+
+# Social Influence
+```{r}
+
+data %>%
+  group_by(SI) %>%
+  summarise(Number = n(),
+            Mean = mean(PEOU, na.rm = TRUE),
+            StdDev = sd(PEOU, na.rm = TRUE))
+
+data$SI <- as.factor(data$SI)
+aov_SI_POEU <- aov(PEOU ~ SI, data=data)
+summary(aov_SI_POEU)
+
+```
+
+# Fitness History
+```{r}
+
+data %>%
+  group_by(FH) %>%
+  summarise(Number = n(),
+            Mean = mean(PEOU, na.rm = TRUE),
+            StdDev = sd(PEOU, na.rm = TRUE))
+
+data$FH <- as.factor(data$FH)
+aov_FH_POEU <- aov(PEOU ~ FH, data=data)
+summary(aov_FH_POEU)
+
+```
+
+# Health status
+```{r}
+
+data %>%
+  group_by(HS) %>%
+  summarise(Number = n(),
+            Mean = mean(PEOU, na.rm = TRUE),
+            StdDev = sd(PEOU, na.rm = TRUE))
+
+data$HS <- as.factor(data$HS)
+aov_HS_POEU <- aov(PEOU ~ HS, data=data)
+summary(aov_HS_POEU)
+
+```
+
+# Variance Analysis using PU as the dependent variable
+# Fitness Environment
+```{r}
+
+data %>%
+  group_by(FE) %>%
+  summarise(Number = n(),
+            Mean = mean(PU, na.rm = TRUE),
+            StdDev = sd(PU, na.rm = TRUE))
+
+aov_FE_PU <- t.test(PU ~ FE, data = data, var.equal = TRUE)
+print(aov_FE_PU)
+
+```
+
+# Social Influence
+```{r}
+
+data %>%
+  group_by(SI) %>%
+  summarise(Number = n(),
+            Mean = mean(PU, na.rm = TRUE),
+            StdDev = sd(PU, na.rm = TRUE))
+
+data$SI <- as.factor(data$SI)
+aov_SI_PU <- aov(PU ~ SI, data=data)
+summary(aov_SI_PU)
+
+```
+
+# Fitness History
+```{r}
+
+data %>%
+  group_by(FH) %>%
+  summarise(Number = n(),
+            Mean = mean(PU, na.rm = TRUE),
+            StdDev = sd(PU, na.rm = TRUE))
+
+data$FH <- as.factor(data$FH)
+aov_FH_PU <- aov(PU ~ FH, data=data)
+summary(aov_FH_PU)
+
+```
+
+# Health status
+```{r}
+
+data %>%
+  group_by(HS) %>%
+  summarise(Number = n(),
+            Mean = mean(PU, na.rm = TRUE),
+            StdDev = sd(PU, na.rm = TRUE))
+
+data$HS <- as.factor(data$HS)
+aov_HS_PU <- aov(PU ~ HS, data=data)
+summary(aov_HS_PU)
+
+```
+
+# Variance Analysis using CUB as the dependent variable
+# Fitness Environment
+```{r}
+
+data %>%
+  group_by(FE) %>%
+  summarise(Number = n(),
+            Mean = mean(CUB, na.rm = TRUE),
+            StdDev = sd(CUB, na.rm = TRUE))
+
+aov_FE_CUB <- t.test(CUB ~ FE, data = data, var.equal = TRUE)
+print(aov_FE_CUB)
+
+```
+
+# Social Influence
+```{r}
+
+data %>%
+  group_by(SI) %>%
+  summarise(Number = n(),
+            Mean = mean(CUB, na.rm = TRUE),
+            StdDev = sd(CUB, na.rm = TRUE))
+
+data$SI <- as.factor(data$SI)
+aov_SI_CUB <- aov(CUB ~ SI, data=data)
+summary(aov_SI_CUB)
+
+```
+
+# Fitness History
+```{r}
+
+data %>%
+  group_by(FH) %>%
+  summarise(Number = n(),
+            Mean = mean(CUB, na.rm = TRUE),
+            StdDev = sd(CUB, na.rm = TRUE))
+
+data$FH <- as.factor(data$FH)
+aov_FH_CUB <- aov(CUB ~ FH, data=data)
+summary(aov_FH_CUB)
+
+```
+
+# Health status
+```{r}
+
+data %>%
+  group_by(HS) %>%
+  summarise(Number = n(),
+            Mean = mean(CUB, na.rm = TRUE),
+            StdDev = sd(CUB, na.rm = TRUE))
+
+data$HS <- as.factor(data$HS)
+aov_HS_CUB <- aov(PU ~ CUB, data=data)
+summary(aov_HS_CUB)
+
+```
+
+
